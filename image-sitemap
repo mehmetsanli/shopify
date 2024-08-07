@@ -1,0 +1,20 @@
+{% layout none %}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  {% paginate collections.all.products by 2000 %}
+    {% for product in collections.all.products %}
+      <url>
+        <loc>{{ shop.url }}{{ product.url }}</loc>
+        {% for image in product.images %}
+          <image:image>
+            <image:loc>{{ image.src | img_url: 'master' }}</image:loc>
+            <image:title>{{ image.alt | escape }}</image:title>
+          </image:image>
+        {% endfor %}
+      </url>
+      <!-- Debugging output -->
+      <!-- <p>{{ product.title }} - {{ product.images | size }} images</p> -->
+    {% endfor %}
+  {% endpaginate %}
+</urlset>
