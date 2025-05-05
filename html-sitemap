@@ -1,0 +1,48 @@
+<div class="team"> 
+
+<style>
+  .sitemap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .sitemap-section {
+    break-inside: avoid;
+  }
+  @media (max-width: 768px) {
+    .sitemap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="sitemap-grid">
+  <div class="sitemap-section">
+    <h1>Site Haritası</h1>
+    <h2>Popüler Kategoriler</h2>
+    <ul>
+      {% for collection in collections %}
+        <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="sitemap-section">
+    <h2>Önemli Sayfalar</h2>
+    <ul>
+      {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="sitemap-section">
+    <h2>Güncel İçerikler</h2>
+    <ul>
+      {% for article in blogs['news'].articles %}
+        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+</div>
